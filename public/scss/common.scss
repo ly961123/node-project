@@ -1,0 +1,78 @@
+html,body{
+    height: 100%;
+    background: #ccc;
+}
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .ly-head{
+        height: 50px;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid black;
+        display: flex;
+        .left{
+            a{
+                font-size: 26px;
+                font-weight: 800;
+                text-decoration: none;
+            }
+        }
+        .right{
+            display: flex;
+            align-items: center;
+            float: right;
+        }
+    }
+    .ly-main{
+        border: 1px solid black;
+        background-color: #ffffff;
+        flex:1;
+        display: flex;
+        .menu{
+            width: 250px;
+            height: 100%;
+            overflow-y:auto;
+            a{
+                display: block;
+                color: red;
+                font-size: 20px;
+                font-weight: 700;
+                margin-top:20px;
+                text-decoration: none;
+                border-bottom: 1px dashed black;
+                width: 100%;
+                padding-bottom: 10px;
+            }
+            a:hover{
+                color: rgb(60, 255, 0);
+            }
+            border-right: 1px solid green;
+        }
+        .body{
+            flex: 1;
+            padding: 20px;
+            .search{
+                margin-bottom: 20px;
+                display: flex;
+                input{
+                    width: 300px;
+                }
+            }
+        }
+    }
+    .ly-foot{
+        height: 50px;
+        width: 100%;
+        border: 1px solid black;
+    }
+}
+//=======================对bootstrap的样式修改=====
+.table-hover>tbody>tr:hover{
+    background-color: aqua;
+}
+.pagination{
+    float: right;
+}
