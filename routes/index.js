@@ -14,5 +14,8 @@ router.get('/phone.html', function (req, res) {
 router.get('/brand.html', function (req, res) {
   res.render('brand');
 })
+router.get('/index.html', function (req, res) {
+  res.render('index');
+})
 
 module.exports = router;

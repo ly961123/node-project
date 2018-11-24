@@ -1,0 +1,14 @@
+.list .alter {
+  margin-right: 40px;
+  font-weight: 600;
+}
+.list .remove {
+  color: red;
+  font-weight: 600;
+}
+
+.pagination {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}

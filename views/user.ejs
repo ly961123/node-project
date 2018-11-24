@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/user.css">
 
 </head>
 
@@ -30,9 +31,13 @@
                         <thead>
                             <tr>
                                 <th>序号</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>用户名</th>
+                                <th>用户昵称</th>
+                                <th>手机号码</th>
+                                <th>性别</th>
+                                <th>年龄</th>
+                                <th>是否充钱</th>
+                                <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,42 +45,48 @@
                                 <th scope="row">1</th>
                                 <td>Mark</td>
                                 <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>1545755</td>
+                                <td>男</td>
+                                <td>18</td>
+                                <td>是</td>
+                                <td>
+                                    <a href="#" class="alter">修改</a>
+                                    <a href="
+                                    #" class="remove">删除</a>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
                                 <td>Jacob</td>
                                 <td>Thornton</td>
-                                <td>@fat</td>
+                                <td>120</td>
+                                <td>女</td>
+                                <td>23</td>
+                                <td>是</td>
+                                <td>
+                                    <a href="#" class="alter">修改</a>
+                                    <a href="
+                                        #" class="remove">删除</a>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
                                 <td>Larry</td>
                                 <td>the Bird</td>
-                                <td>@twitter</td>
+                                <td>110</td>
+                                <td>女</td>
+                                <td>19</td>
+                                <td>否</td>
+                                <td>
+                                    <a href="#" class="alter">修改</a>
+                                    <a href="
+                                        #" class="remove">删除</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <%- include('./common/nav.ejs') %>
             </div>
         </div>
         <%- include('./common/foot.ejs') %>

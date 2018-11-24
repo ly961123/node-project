@@ -1,0 +1,21 @@
+
+
+
+
+
+//=======================对bootstrap的样式修改=====
+.list{
+    .alter{
+        margin-right:40px;
+        font-weight: 600;
+    }
+    .remove{
+        color:red;
+        font-weight: 600;
+    }
+}
+.pagination{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}

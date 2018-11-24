@@ -1,0 +1,28 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .body img {
+    width: 100px;
+    height: 100px; }
+  .body .top {
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid green;
+    margin-bottom: 20px; }
+  .body .bottom {
+    flex: 1;
+    text-align: center; }
+    .body .bottom th {
+      text-align: center;
+      vertical-align: middle; }
+    .body .bottom td {
+      vertical-align: middle; }
+    .body .bottom .alter {
+      margin-right: 40px;
+      font-weight: 600; }
+    .body .bottom .remove {
+      color: red;
+      font-weight: 600; }
+
+/*# sourceMappingURL=phone.css.map */

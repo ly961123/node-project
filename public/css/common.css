@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  background: #ccc;
+  background: url(../images/bg4.jpg);
 }
 
 .container {
@@ -14,6 +14,7 @@ html, body {
   align-items: center;
   justify-content: space-between;
   border: 1px solid black;
+  background: url(../images/head.jpg);
   display: flex;
 }
 .container .ly-head .left a {
@@ -28,7 +29,7 @@ html, body {
 }
 .container .ly-main {
   border: 1px solid black;
-  background-color: #ffffff;
+  background: url(../images/body.png);
   flex: 1;
   display: flex;
 }
@@ -53,6 +54,7 @@ html, body {
   color: #3cff00;
 }
 .container .ly-main .body {
+  position: relative;
   flex: 1;
   padding: 20px;
 }
@@ -67,6 +69,7 @@ html, body {
   height: 50px;
   width: 100%;
   border: 1px solid black;
+  background: url(../images/head.jpg);
 }
 
 .table-hover > tbody > tr:hover {
@@ -75,4 +78,11 @@ html, body {
 
 .pagination {
   float: right;
+}
+
+.list {
+  text-align: center;
+}
+.list th {
+  text-align: center;
 }

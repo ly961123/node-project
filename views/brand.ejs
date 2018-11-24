@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/brand.css">
 
 </head>
 
@@ -19,7 +20,44 @@
         <div class="ly-main">
             <%- include('./common/menu.ejs') %>
             <div class="body">
-                品牌页
+                <div class="top">
+                    <button type="button" class="btn btn-warning">新增品牌</button>
+                </div>
+                <div class="bottom">
+                    <table class="table  table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>品牌logo</th>
+                                <th>品牌</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="/images/iphone-logo.jpg" alt=""></td>
+                                <td>苹果</td>
+                                <td>
+                                    <a href="#" class="alter">修改</a>
+                                    <a href="
+                                                        #" class="remove">删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td><img src="/images/huawei-logo.jpg" alt=""></td>
+                                <td>华为</td>
+                                <td>
+                                    <a href="#" class="alter">修改</a>
+                                    <a href="
+                                                        #" class="remove">删除</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <%- include('./common/nav.ejs') %>
             </div>
         </div>
         <%- include('./common/foot.ejs') %>
