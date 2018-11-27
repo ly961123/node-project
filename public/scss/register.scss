@@ -1,0 +1,64 @@
+.body{
+    .user{
+    position: relative;
+    span{
+        position: absolute;
+        top:10px;
+        left: 350px;
+        width: 150px;
+        font-size: 18px;
+        display: none;
+        text-align: center;
+    }
+    // .yan{
+    //     display: none;
+    // }
+    .uok{
+        color: green;
+        // display: none;
+    }
+    .unotok{
+        color: red;
+        // display: none;
+    }
+}
+.pwd{
+    position: relative;
+    span{
+        position: absolute;
+        top:10px;
+        left: 350px;
+        width: 150px;
+        font-size: 18px;
+        display: none;
+        text-align: center;
+    }
+    // .pyan{
+    //     display: none;
+    // }
+    .pok{
+        color: green;
+        // display: none;
+    }
+    .pnotok{
+        color: red;
+        // display: none;
+    }
+}
+.login{
+    form{
+        height: 450px;
+        margin: 50px auto;
+    }
+    p{
+        color: white;
+        width: 100%;
+        height: 20px;
+        margin-top: 5px;
+        .sex{
+            // width: 100px;
+            height: 15px;
+            color: white;
+        }
+    }
+}}

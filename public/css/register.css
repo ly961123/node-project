@@ -1,0 +1,50 @@
+.body .user {
+  position: relative;
+}
+.body .user span {
+  position: absolute;
+  top: 10px;
+  left: 350px;
+  width: 150px;
+  font-size: 18px;
+  display: none;
+  text-align: center;
+}
+.body .user .uok {
+  color: green;
+}
+.body .user .unotok {
+  color: red;
+}
+.body .pwd {
+  position: relative;
+}
+.body .pwd span {
+  position: absolute;
+  top: 10px;
+  left: 350px;
+  width: 150px;
+  font-size: 18px;
+  display: none;
+  text-align: center;
+}
+.body .pwd .pok {
+  color: green;
+}
+.body .pwd .pnotok {
+  color: red;
+}
+.body .login form {
+  height: 450px;
+  margin: 50px auto;
+}
+.body .login p {
+  color: white;
+  width: 100%;
+  height: 20px;
+  margin-top: 5px;
+}
+.body .login p .sex {
+  height: 15px;
+  color: white;
+}

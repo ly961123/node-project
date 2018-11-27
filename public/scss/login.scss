@@ -1,0 +1,73 @@
+.body{
+    background: url(../images/login.png);
+    background-size: 100% 100%;
+    .login{
+        form{
+            font-family: '隶书';
+            margin: 100px auto;
+            width: 350px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .p1{
+                background: url(../images/loginx.png);
+                width: 74px;
+                height: 50px;
+                margin-bottom: 10px;
+            }
+            div{
+                width: 100%;
+                display: flex;
+                border-bottom:1px solid #e4e1e1ec;
+                color: #f8f8f8ec;
+                margin-top: 20px;
+                i{
+                    margin-top: 5px;
+                }
+                input{
+                    border: 0px;
+                    background-color:transparent;
+                    width: 100%;
+                    height: 30px;
+                    color: #f8f8f8ec;
+                }
+            }
+            .p2{
+                display: flex;
+                width: 100%;
+                color: #f8f8f8ec;
+                margin-top: 10px;
+                input{
+                    width: 10px;
+                    margin-top: 3px 5px 0 0;
+                }
+            }
+            .dneglu{
+                width: 100%;
+                height: 30px;
+                margin-top: 20px;
+                font-size: 18px;
+                background: #19b19c;
+                border: 0;
+                color: #f8f8f8ec;
+            }
+            .zhuce{
+                height: 30px;
+                width: 100%;
+                margin-top: 20px;
+                font-size: 18px;
+                background-color: #19b19c;
+                border: 0;
+                color: #f8f8f8ec;
+            }
+        }
+    }
+}
+
+// =======================修改了bootstrap========
+
+.form-control:focus{
+    border: 0;
+    height: 20px;
+}

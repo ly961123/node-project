@@ -1,6 +1,5 @@
 html, body {
   height: 100%;
-  background: url(../images/bg4.jpg);
 }
 
 .container {
@@ -26,6 +25,10 @@ html, body {
   display: flex;
   align-items: center;
   float: right;
+}
+.container .ly-head .right i {
+  color: red;
+  font-weight: 700;
 }
 .container .ly-main {
   border: 1px solid black;

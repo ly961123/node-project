@@ -41,48 +41,36 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <% for(var i = 0; i < list.length; i++){ %>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>1545755</td>
-                                <td>男</td>
-                                <td>18</td>
-                                <td>是</td>
+                                <th scope="row">
+                                    <%= i+1 %>
+                                </th>
+                                <td>
+                                    <%= list[i].username %>
+                                </td>
+                                <td>
+                                    <%= list[i].nickname %>
+                                </td>
+                                <td>
+                                    <%= list[i].phone %>
+                                </td>
+                                <td>
+                                    <%= list[i].sex %>
+                                </td>
+                                <td>
+                                    <%= list[i].age %>
+                                </td>
+                                <td>
+                                    <%= list[i].isCharge %>
+                                </td>
                                 <td>
                                     <a href="#" class="alter">修改</a>
                                     <a href="
-                                    #" class="remove">删除</a>
+                                            #" class="remove">删除</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>120</td>
-                                <td>女</td>
-                                <td>23</td>
-                                <td>是</td>
-                                <td>
-                                    <a href="#" class="alter">修改</a>
-                                    <a href="
-                                        #" class="remove">删除</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>110</td>
-                                <td>女</td>
-                                <td>19</td>
-                                <td>否</td>
-                                <td>
-                                    <a href="#" class="alter">修改</a>
-                                    <a href="
-                                        #" class="remove">删除</a>
-                                </td>
-                            </tr>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>
@@ -94,3 +82,4 @@
 </body>
 
 </html>
+<%- include('./common/dong.ejs') %>　

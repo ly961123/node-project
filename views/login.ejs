@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xx后台管理系统</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/login.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <%- include('./common/head.ejs') %>
+        <div class="ly-main">
+            <div class="body">
+                <div class="login">
+                    <p class="p1"></p>
+                    <form action="/users/login" method="POST">
+                        <div>
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input type="text" name="username" placeholder="请输入用户名" class="form-control">
+                        </div>
+                        <div>
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <input type="password" name="pwd" placeholder="请输入用密码" class="form-control">
+                        </div>
+                        <p class="p2"><input type="checkbox">记住密码</p>
+                        <input type="submit" value="登录" class="dneglu">
+                        <!-- <a class="btn btn-default" href="#" role="button">登录</a> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include('./common/foot.ejs') %>
+    </div>
+</body>
+
+</html>
+<%- include('./common/dong.ejs') %>　
