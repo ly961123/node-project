@@ -66,8 +66,10 @@
                                 </td>
                                 <td>
                                     <a href="#" class="alter">修改</a>
-                                    <a href="
-                                            #" class="remove">删除</a>
+                                    <% if(list[i].isCharge){ %>
+                                    <%= console.log((list[i].isCharge)) %>
+                                    <a href="/users/delete?id=<%= list[i]._id %>" class="remove">删除</a>
+                                    <% } %>
                                 </td>
                             </tr>
                             <% } %>

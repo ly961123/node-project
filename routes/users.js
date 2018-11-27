@@ -3,6 +3,7 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://127.0.0.1:27017';
 var async = require('async');
+var objectId = require('mongodb').ObjectId;
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
@@ -178,5 +179,33 @@ router.post('/register', function (req, res) {
   //   })
   //   client.close();
   // })
+})
+//删除操作
+router.get('/delete', function (req, res) {
+  var id = objectId(req.query.id);
+  MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
+    if (err) {
+      console.log('错误');
+      res.render('error', {
+        message: '错误',
+        error: err
+      })
+      return;
+    }
+    var db = client.db('project');
+    db.collection('user').deleteOne({
+      _id: id
+    }, function (err) {
+      if (err) {
+        res, render('error', {
+          message: '删除失败',
+          error: err
+        })
+      } else {
+        //删除成功，刷新页面
+        res.redirect('/users');
+      }
+    })
+  })
 })
 module.exports = router;
