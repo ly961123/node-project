@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xx后台管理系统</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/register.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="ly-head">
+            <div class="left">
+                <a href="index.html">xx后台管理系统</a>
+            </div>
+            <div class="right">
+                <div>
+                    <a href="login.html" class="btn btn-primary btn-lg active btn-xs" role="button">登录</a>
+                    <a href="register.html" class="btn btn-default btn-lg active btn-xs" role="button">注册</a>
+                </div>
+                <p style="margin:0 30px;">欢迎您-<i>
+                        xxx
+                    </i>-(管理员)</p>
+                <button type="button" class="btn btn-primary btn-sm">退出</button>
+            </div>
+        </div>
+        <div class="ly-main">
+            <div class="body">
+                <div class="login">
+                    <p class="p1"></p>
+                    <form action="/users/register" method="POST">
+                        <div class="user">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input type="text" name="username" placeholder="请输入用户名" class="form-control text">
+                            <span class="uyan">请输入2-8个中文字符</span>
+                            <span class="uok">可用</span>
+                            <span class="unotok">请从新输入正确格式用户名</span>
+                        </div>
+                        <div class="pwd">
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <input type="password" name="pwd" placeholder="请输入用密码" class="form-control password">
+                            <span class="pyan">请输入3-9个英文数字可加下划线</span>
+                            <span class="pok">可用</span>
+                            <span class="pnotok">请从新输入正确格式密码</span>
+                        </div>
+                        <div class="nickname">
+                            <input type="text" name="nickname" placeholder="请输入昵称" class="form-control">
+                        </div>
+                        <div class="phone">
+                            <input type="text" name="phone" placeholder="请输入电话号码" class="form-control">
+                        </div>
+                        <div class="age">
+                            <input type="text" name="age" placeholder="请输入年龄" class="form-control">
+                        </div>
+                        <p>性别：<input type="radio" name="sex" value="男" class="sex" checked>男
+                            <input type="radio" name="sex" value="女" class="sex">女
+                        </p>
+                        <p>是否充钱：<input type="radio" name="isCharge" value="true" class="isCharge">已充
+                            <input type="radio" name="isCharge" value="false" class="isCharge" checked>未充
+                        </p>
+
+                        <input type="submit" value="注册" class="zhuce">
+                        <!-- <a class="btn btn-default" href="#" role="button">注册</a> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="ly-foot">
+            底部文件
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<script src="../jquery.min.js"></script>
+<script>
+    var text = $(".text");
+    var password = $(".password");
+    var uyan = $(".uyan");
+    var uok = $(".uok");
+    var unotok = $(".unotok");
+    var pyan = $(".pyan");
+    var pok = $(".pok");
+    var pnotok = $(".pnotok");
+    // ================================匹配用户正则===================
+    text.focus(function () {
+        uyan.show();
+        uok.hide();
+        unotok.hide();
+    })
+    text.blur(function () {
+        uyan.hide();
+        if (text.val() != "") {
+            if ((/^[\u4e00-\u9fa5][\u4e00-\u9fa5]{1,7}$/).test(text.val())) {
+                uok.show();
+                unotok.hide();
+            } else {
+                unotok.show();
+                uok.hide();
+            }
+        }
+    })
+    // ================================匹配密码正则===================
+    password.focus(function () {
+        pyan.show();
+        pok.hide();
+        pnotok.hide();
+    })
+    password.blur(function () {
+        pyan.hide();
+        if (password.val() != "") {
+            if (/^\w{2,8}$/.test(password.val())) {
+                pok.show();
+                pnotok.hide();
+            } else {
+                pnotok.show();
+                pok.hide();
+            }
+        }
+    })
+</script>

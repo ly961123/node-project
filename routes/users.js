@@ -6,34 +6,88 @@ var async = require('async');
 var objectId = require('mongodb').ObjectId;
 /* GET users listing. */
 router.get('/', function (req, res, next) {
+  var page = parseInt(req.query.page) || 1;//页码
+  var pageSize = parseInt(req.query.pageSize) || 4;//每页显示条数
+  var totalSize = 0;//总条数
+  // console.log(page, pageSize);
   MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
     if (err) {
-      //连接数据库失败
-      console.log('连接数据库失败');
+      console.log('错误');
       res.render('error', {
-        message: '连接数据库失败',
+        message: '错误',
         error: err
-      });
-      return;
+      })
     }
     var db = client.db('project');
-    db.collection('user').find().toArray(function (err, data) {
-      if (err) {
-        //查询用户集合失败
-        console.log('查询失败');
-        res.render('error', {
-          message: '查询失败',
-          error: err
+    async.series([
+      function (cb) {
+        //总条数
+        db.collection('user').find().count(function (err, num) {
+          if (err) {
+            cb(err);
+          } else {
+            totalSize = num;
+            cb(null);
+          }
         })
-      } else {
-        console.log(data);
-        res.render('users', {
-          list: data
+      }, function (cb) {
+        db.collection('user').find().limit(pageSize).skip(page * pageSize - pageSize).toArray(function (err, data) {
+          if (err) {
+            cb(err);
+          } else {
+            cb(null, data);
+          }
         })
       }
+    ], function (err, result) {
+      if (err) {
+        res.render('error', {
+          message: '错误',
+          error: errr
+        })
+      } else {
+        var totalPage = Math.ceil(totalSize / pageSize);//总页数
+        // console.log(result[1]);
+        res.render('users', {
+          list: result[1],
+          totalSize: totalSize,
+          page: page,
+          pageSize: pageSize,
+          totalPage: totalPage
+        })
+      }
+      client.close();
     })
-    client.close();
   })
+
+  // MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
+  //   if (err) {
+  //     //连接数据库失败
+  //     console.log('连接数据库失败');
+  //     res.render('error', {
+  //       message: '连接数据库失败',
+  //       error: err
+  //     });
+  //     return;
+  //   }
+  //   var db = client.db('project');
+  //   db.collection('user').find().toArray(function (err, data) {
+  //     if (err) {
+  //       //查询用户集合失败
+  //       console.log('查询失败');
+  //       res.render('error', {
+  //         message: '查询失败',
+  //         error: err
+  //       })
+  //     } else {
+  //       console.log(data);
+  //       res.render('users', {
+  //         list: data
+  //       })
+  //     }
+  //   })
+  //   client.close();
+  // })
 })
 //登录操作 localhost:3000/users/login
 router.post('/login', function (req, res) {
