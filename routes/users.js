@@ -91,7 +91,7 @@ router.get('/', function (req, res, next) {
 })
 //登录操作 localhost:3000/users/login
 router.post('/login', function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   var username = req.body.username;
   var password = req.body.pwd;
   // 2.验证的有效性
@@ -136,7 +136,7 @@ router.post('/login', function (req, res) {
         })
       } else {//登录成功
         res.cookie('nickname', data[0].nickname, {
-          maxAge: 10 * 60 * 1000
+          maxAge: 30 * 60 * 1000
         })
         res.redirect('/');
       }
@@ -163,45 +163,53 @@ router.post('/register', function (req, res) {
       return;
     }
     var db = client.db('project');
-    async.series([
-      function (cb) {
-        db.collection('user').find({ username: username }).count(function (err, num) {
-          if (err) {
-            cb(err);
-          } else if (num > 0) {
-            cb(new Error('用户名已存在'));
-          } else {
-            cb(null);
-          }
-        })
-      }, function (cb) {
-        db.collection('user').insertOne({
-          username: username,
-          password: password,
-          nickname: nickname,
-          phone: phone,
-          sex: sex,
-          age: age,
-          isCharge: isCharge
-        }, function (err) {
-          if (err) {
-            cb(err)
-          } else {
-            cb(null);
-          }
-        })
-      }
-    ], function (err, result) {
-      if (err) {
-        res.render('error', {
-          message: '注册失败',
-          error: err
-        })
-      } else {
-        res.redirect('/login.html');
-      }
-      client.close();
-    })
+    if (username != '' && password != '' && nickname != '' && phone != '' && age != '' && sex != '' && isCharge != '') {
+      async.series([
+        function (cb) {
+          db.collection('user').find({ username: username }).count(function (err, num) {
+            if (err) {
+              cb(err);
+            } else if (num > 0) {
+              cb(new Error('用户名已存在'));
+            } else {
+              cb(null);
+            }
+          })
+        }, function (cb) {
+          db.collection('user').insertOne({
+            username: username,
+            password: password,
+            nickname: nickname,
+            phone: phone,
+            sex: sex,
+            age: age,
+            isCharge: isCharge
+          }, function (err) {
+            if (err) {
+              cb(err)
+            } else {
+              cb(null);
+            }
+          })
+        }
+      ], function (err, result) {
+        if (err) {
+          res.render('error', {
+            message: '注册失败',
+            error: err
+          })
+        } else {
+          res.redirect('/login.html');
+        }
+        client.close();
+      })
+    } else {
+      console.log('各项都不能为空，请认真填写')
+      res.render('error', {
+        message: '各项都不能为空，请认真填写',
+        error: new Error('各项都不能为空，请认真填写')
+      })
+    }
   })
   // MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
   //   if (err) {
@@ -259,6 +267,37 @@ router.get('/delete', function (req, res) {
         //删除成功，刷新页面
         res.redirect('/users');
       }
+    })
+  })
+})
+router.post('/search', function (req, res) {
+  console.log(req.body);
+  var username = req.body.username;
+  var results = new RegExp(username);
+  MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
+    if (err) {
+      console.log('出错');
+      res.render('error', {
+        message: '出错',
+        error: err
+      })
+    }
+    var db = client.db('project');
+    db.collection('user').find({ username: results }).toArray(function (err, data) {
+      if (err) {
+        console.log('搜索失败');
+        res.render('error', {
+          message: '搜索失败',
+          error: err
+        })
+      } else {
+        console.log(data);
+        res.redirect('/users');
+        // res.render('/users', {
+        //   list: data
+        // })
+      }
+      client.close();
     })
   })
 })

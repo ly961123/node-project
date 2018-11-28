@@ -21,10 +21,13 @@
             <%- include('./common/menu.ejs') %>
             <div class="body">
                 <div class="search">
-                    <form action="">
-                        <input type="text" class="form-control" placeholder="Please enter content" aria-describedby="basic-addon2">
+                    <form action="/users/search" method="POST">
+                        <input type="text" class="form-control shouru" name="username" placeholder="Please enter content"
+                            aria-describedby="basic-addon2">
+                        <!-- <button type="submit" class="btn btn-primary">search</button> -->
+                        <input type="submit" class="btn btn-primary dianji" value="search">
                     </form>
-                    <button type="button" class="btn btn-primary">search</button>
+                    <!-- <button type="button" class="btn btn-primary">search</button> -->
                 </div>
                 <div class="list">
                     <table class="table table-condensed table-bordered table-hover">
@@ -66,7 +69,6 @@
                                 </td>
                                 <td>
                                     <!-- ========================================================================= -->
-                                    <a href="#" class="alter">修改</a>
                                     <% if(list[i].isCharge=='false'){ %>
                                     <a href="/users/delete?id=<%= list[i]._id %>" class="remove">删除</a>
                                     <% } %>

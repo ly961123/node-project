@@ -65,8 +65,11 @@ html, body {
   margin-bottom: 20px;
   display: flex;
 }
-.container .ly-main .body .search input {
+.container .ly-main .body .search .shuru {
   width: 300px;
+}
+.container .ly-main .body .search input {
+  float: left;
 }
 .container .ly-foot {
   height: 50px;

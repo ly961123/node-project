@@ -63,8 +63,11 @@ html,body{
             .search{
                 margin-bottom: 20px;
                 display: flex;
-                input{
+                .shuru{
                     width: 300px;
+                }
+                input{
+                    float: left;
                 }
             }
         }
