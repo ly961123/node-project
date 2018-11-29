@@ -10,8 +10,9 @@
     .top{
         height: 50px;
         width: 100%;
+        padding-bottom: 10px;
         border-bottom: 1px solid green;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     .bottom{
         flex: 1;
@@ -32,12 +33,78 @@
             font-weight: 600;
         }
     }
-    .shade{
+    .zhe{
         position: absolute;
-        width: 100%;
+        width: 868px;
         height: 100%;
         background-color: black;
         z-index: 10;
-        opacity: 0.6;
+        opacity: 0.4;
+        display: none;
+    }
+    .shade{
+        display: none;
+        position: absolute;
+        top:0;
+        left:0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 400px;
+        height: 450px;
+        opacity: 1;
+        z-index: 12;
+        background-color: white;
+        padding: 20px 40px;
+        font-family: "隶书";
+        font-size: 18px;
+        input{
+            margin:10px 0 15px 70px;
+            border:1px solid #5cb85c;
+            font-family: "隶书";
+            width: 250px;
+        }
+        .append{
+            width: 100px;
+            height: 30px;
+            float: right;
+            border: 1px solid #5cb85c;
+            background-color: #5cb85c;
+            border-radius: 5px;
+            color: white;
+        }
+        
+    }
+    .alterShade{
+        display: none;
+        position: absolute;
+        top:0;
+        left:0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 400px;
+        height: 450px;
+        opacity: 1;
+        z-index: 12;
+        background-color: white;
+        padding: 20px 40px;
+        font-family: "隶书";
+        font-size: 18px;
+        input{
+            margin:10px 0 15px 70px;
+            border:1px solid #5cb85c;
+            font-family: "隶书";
+            width: 250px;
+        }
+        .append{
+            width: 100px;
+            height: 30px;
+            float: right;
+            border: 1px solid #5cb85c;
+            background-color: #5cb85c;
+            border-radius: 5px;
+            color: white;
+        }
     }
 }

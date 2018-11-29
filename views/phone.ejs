@@ -2,79 +2,184 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>xx后台管理系统</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/phone.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>xx后台管理系统</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/phone.css">
 
 </head>
 
 <body>
-    <div class="container">
-        <%- include('./common/head.ejs') %>
-        <div class="ly-main">
-            <%- include('./common/menu.ejs') %>
-            <div class="body">
-                <div class="shade">
-
-                </div>
-                <div class="top">
-                    <button type="button" class="btn btn-success">新增手机</button>
-                </div>
-                <div class="bottom">
-                    <table class="table  table-bordered ">
-                        <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>图片</th>
-                                <th>手机型号</th>
-                                <th>品牌</th>
-                                <th>官方指导价</th>
-                                <th>二手价</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><img src="/images/iphone.jpg" alt=""></td>
-                                <td>苹果 iPhone XS Max</td>
-                                <td>苹果</td>
-                                <td>￥9800</td>
-                                <td>￥8888</td>
-                                <td>
-                                    <a href="#" class="alter">修改</a>
-                                    <a href="
-                                        #" class="remove">删除</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td><img src="/images/huawei.png" alt=""></td>
-                                <td>HUAWEI Mate 20 RS 保时捷设计</td>
-                                <td>华为</td>
-                                <td>￥12999</td>
-                                <td>￥11999</td>
-                                <td>
-                                    <a href="#" class="alter">修改</a>
-                                    <a href="
-                                        #" class="remove">删除</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <%- include('./common/nav.ejs') %>
-            </div>
+  <div class="container">
+    <%- include('./common/head.ejs') %>
+    <div class="ly-main">
+      <%- include('./common/menu.ejs') %>
+      <div class="body">
+        <div class="zhe">
         </div>
-        <%- include('./common/foot.ejs') %>
+        <div class="shade">
+
+          <form action="/phone/addPhone" method="POST" enctype="multipart/form-data">
+            手机型号：<br><input type="text" placeholder="手机型号" name="phoneType"><br>
+            品牌：<br><input type="text" placeholder="品牌" name="brand"><br>
+            官方指导价：<br><input type="text" placeholder="官方指导价" name="price"><br>
+            二手价：<br><input type="text" name="twoPrice" placeholder="二手价"><br>
+            选择图片：<br><input type="file" name="file"><br>
+            <input type="submit" value="添加" class="append">
+          </form>
+
+        </div>
+        <!-- <div class="zhe"> -->
+
+        <div class="alterShade">
+
+          <form action="/phone/addPhone" method="POST" enctype="multipart/form-data">
+            手机型号：<br><input type="text" placeholder="手机型号" name="phoneType" class="phoneType"><br>
+            品牌：<br><input type="text" placeholder="品牌" name="brand" class="brand"><br>
+            官方指导价：<br><input type="text" placeholder="官方指导价" name="price" class="price"><br>
+            二手价：<br><input type="text" name="twoPrice" placeholder="二手价" class="twoPrice"><br>
+            <!-- 选择图片：<br><input type="file" name="file"><br> -->
+            <input type="submit" value="确认修改" class="append">
+          </form>
+
+        </div>
+        <div class="top">
+          <button type="button" class="btn btn-success addPhone">新增手机</button>
+        </div>
+        <div class="bottom">
+          <table class="table  table-bordered ">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>图片</th>
+                <th>手机型号</th>
+                <th>品牌</th>
+                <th>官方指导价</th>
+                <th>二手价</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i = 0;i < list.length ;i++){ %>
+              <tr>
+                <th scope="row">
+                  <%= i+1 %>
+                </th>
+                <td><img src="/<%= list[i].fileName %>" alt=""></td>
+                <td class="_phoneType">
+                  <%= list[i].phoneType %>
+                </td>
+                <td class="_brand">
+                  <%= list[i].brand %>
+                </td>
+                <td class="_price">
+                  ￥
+                  <%= list[i].price %>
+                </td>
+                <td class="_twoPrice">
+                  ￥
+                  <%= list[i].twoPrice %>
+                </td>
+                <td>
+                  <a href="#" class="alter">修改</a>
+                  <a href="/phone/delete?id=<%= list[i]._id %>" class="remove">删除</a>
+                </td>
+              </tr>
+              <% } %>
+              <!-- <tr>
+                  <th scope="row">2</th>
+                  <td><img src="/images/huawei.png" alt=""></td>
+                  <td>HUAWEI Mate 20 RS 保时捷设计</td>
+                  <td>华为</td>
+                  <td>￥12999</td>
+                  <td>￥11999</td>
+                  <td>
+                      <a href="#" class="alter">修改</a>
+                      <a href="
+                          #" class="remove">删除</a>
+                  </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+        <nav>
+          <ul class="pagination">
+            <li>
+              <a href="/phone?page=<%= page-1 <1 ? 1 : page-1 %> & pageSize=<%= pageSize %> " aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <% for(var i=0 ;i < totalPage;i++ ){ %>
+            <li class="<%= page === (i+1) ? 'active' : ''%>">
+              <a href="/phone?page=<%= i+1 %> & pageSize=<%= pageSize %> ">
+                <%= i+1 %></a></li>
+            <% } %>
+            <!-- <li class="active"><a href="#">1</a></li> -->
+            <!-- <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li> -->
+            <li>
+              <a href="/phone?page=<%= page+1 > totalPage ? totalPage : page+1 %> & pageSize=<%= pageSize %> "
+                aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
+    <%- include('./common/foot.ejs') %>
+  </div>
 </body>
 
 </html>
 <%- include('./common/dong.ejs') %>　
+<script src="/jquery.min.js"></script>
+<script>
+  var addPhone = $(".addPhone");
+  var zhe = $(".zhe");
+  var shade = $(".shade");
+  var append = $(".append");
+  var alterShade = $(".alterShade");
+  var alter = $(".alter");
+  var phoneType = $(".phoneType");
+  var brand = $(".brand");
+  var price = $(".price");
+  var twoPrice = $(".twoPrice");
+  var _phoneType = $("._phoneType");
+  var _brand = $("._brand");
+  var _price = $("._price");
+  var _twoPrice = $("._twoPrice");
+  addPhone.click(function () {
+    zhe.show();
+    shade.show();
+  })
+  zhe.click(function () {
+    zhe.hide();
+    shade.hide();
+    alterShade.hide();
+  })
+  append.click(function () {
+    zhe.hide();
+    shade.hide();
+    alterShade.hide();
+  })
+  alter.click(function () {
+    zhe.show();
+    alterShade.show();
+    console.log($(this).parent().parent().find("._phoneType").html().trim());
+    // phoneType.val(_phoneType.html().trim());
+    // brand.val(_brand.html().trim());
+    // price.val(_price.html().trim().substr(1).trim());
+    // // console.log(_price.html().trim().substr(1).trim());
+    // twoPrice.val(_twoPrice.html().trim().substr(1).trim());
+
+  })
+
+</script>

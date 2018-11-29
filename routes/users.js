@@ -268,8 +268,10 @@ router.get('/delete', function (req, res) {
         res.redirect('/users');
       }
     })
+    client.close();
   })
 })
+//搜索操作
 router.post('/search', function (req, res) {
   console.log(req.body);
   var username = req.body.username;

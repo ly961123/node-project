@@ -32,4 +32,46 @@
             font-weight: 600;
         }
     }
+    .zhe{
+        position: absolute;
+        width: 868px;
+        height: 100%;
+        background-color: black;
+        z-index: 10;
+        opacity: 0.4;
+        display: none;
+    }
+    .shade{
+        display: none;
+        position: absolute;
+        top:0;
+        left:0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 400px;
+        height: 450px;
+        opacity: 1;
+        z-index: 12;
+        background-color: white;
+        padding: 20px 40px;
+        font-family: "隶书";
+        font-size: 18px;
+        input{
+            margin:10px 0 15px 70px;
+            border:1px solid #f0ad4e;
+            font-family: "隶书";
+            width: 250px;
+        }
+        .append{
+            width: 100px;
+            height: 30px;
+            float: right;
+            border: 1px solid #f0ad4e;
+            background-color: #f0ad4e;
+            border-radius: 5px;
+            color: white;
+        }
+        
+    }
 }

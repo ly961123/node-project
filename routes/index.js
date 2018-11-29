@@ -8,9 +8,9 @@ router.get('/', function (req, res, next) {
 // router.get('/user.html', function (req, res) {
 //   res.render('user');
 // })
-router.get('/phone.html', function (req, res) {
-  res.render('phone');
-})
+// router.get('/phone.html', function (req, res) {
+//   res.render('phone');
+// })
 router.get('/brand.html', function (req, res) {
   res.render('brand');
 })

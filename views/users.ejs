@@ -2,106 +2,106 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>xx后台管理系统</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/user.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>xx后台管理系统</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/user.css">
 
 </head>
 
 <body>
-    <div class="container">
-        <%- include('./common/head.ejs') %>
-        <div class="ly-main">
-            <%- include('./common/menu.ejs') %>
-            <div class="body">
-                <div class="search">
-                    <form action="/users/search" method="POST">
-                        <input type="text" class="form-control shouru" name="username" placeholder="Please enter content"
-                            aria-describedby="basic-addon2">
-                        <!-- <button type="submit" class="btn btn-primary">search</button> -->
-                        <input type="submit" class="btn btn-primary dianji" value="search">
-                    </form>
-                    <!-- <button type="button" class="btn btn-primary">search</button> -->
-                </div>
-                <div class="list">
-                    <table class="table table-condensed table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>用户名</th>
-                                <th>用户昵称</th>
-                                <th>手机号码</th>
-                                <th>性别</th>
-                                <th>年龄</th>
-                                <th>是否充钱</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for(var i = 0; i < list.length; i++){ %>
-                            <tr>
-                                <th scope="row">
-                                    <%= i+1 %>
-                                </th>
-                                <td>
-                                    <%= list[i].username %>
-                                </td>
-                                <td>
-                                    <%= list[i].nickname %>
-                                </td>
-                                <td>
-                                    <%= list[i].phone %>
-                                </td>
-                                <td>
-                                    <%= list[i].sex %>
-                                </td>
-                                <td>
-                                    <%= list[i].age %>
-                                </td>
-                                <td>
-                                    <%= list[i].isCharge %>
-                                </td>
-                                <td>
-                                    <!-- ========================================================================= -->
-                                    <% if(list[i].isCharge=='false'){ %>
-                                    <a href="/users/delete?id=<%= list[i]._id %>" class="remove">删除</a>
-                                    <% } %>
-                                </td>
-                            </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="/users?page=<%= page-1 < 1 ? 1 : page-1  %>&pageSize=<%= pageSize %>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <% for(var i = 0;i< totalPage;i++){ %>
-                        <li class="<%= page=== (i+1) ? 'active' : '' %>">
-                            <a href="/users?page=<%= i+1 %>&pageSize=<%= pageSize %>">
-                                <%= i+1 %></a></li>
-                        <% } %>
-                        <li>
-                            <a href="/users?page=<%= page+1 > totalPage  ? totalPage : page+1  %>&pageSize=<%= pageSize %>"
-                                aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+  <div class="container">
+    <%- include('./common/head.ejs') %>
+    <div class="ly-main">
+      <%- include('./common/menu.ejs') %>
+      <div class="body">
+        <div class="search">
+          <form action="/users/search" method="POST">
+            <input type="text" class="form-control shouru" name="username" placeholder="Please enter content"
+              aria-describedby="basic-addon2">
+            <!-- <button type="submit" class="btn btn-primary">search</button> -->
+            <input type="submit" class="btn btn-primary dianji" value="search">
+          </form>
+          <!-- <button type="button" class="btn btn-primary">search</button> -->
         </div>
-        <%- include('./common/foot.ejs') %>
+        <div class="list">
+          <table class="table table-condensed table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>用户昵称</th>
+                <th>手机号码</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>是否充钱</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i = 0; i < list.length; i++){ %>
+              <tr>
+                <th scope="row">
+                  <%= i+1 %>
+                </th>
+                <td>
+                  <%= list[i].username %>
+                </td>
+                <td>
+                  <%= list[i].nickname %>
+                </td>
+                <td>
+                  <%= list[i].phone %>
+                </td>
+                <td>
+                  <%= list[i].sex %>
+                </td>
+                <td>
+                  <%= list[i].age %>
+                </td>
+                <td>
+                  <%= list[i].isCharge %>
+                </td>
+                <td>
+                  <!-- ========================================================================= -->
+                  <% if(list[i].isCharge=='false'){ %>
+                  <a href="/users/delete?id=<%= list[i]._id %>" class="remove">删除</a>
+                  <% } %>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        <nav>
+          <ul class="pagination">
+            <li>
+              <a href="/users?page=<%= page-1 < 1 ? 1 : page-1  %>&pageSize=<%= pageSize %>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <% for(var i = 0;i< totalPage;i++){ %>
+            <li class="<%= page=== (i+1) ? 'active' : '' %>">
+              <a href="/users?page=<%= i+1 %>&pageSize=<%= pageSize %>">
+                <%= i+1 %></a></li>
+            <% } %>
+            <li>
+              <a href="/users?page=<%= page+1 > totalPage  ? totalPage : page+1  %>&pageSize=<%= pageSize %>"
+                aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
+    <%- include('./common/foot.ejs') %>
+  </div>
 </body>
 
 </html>

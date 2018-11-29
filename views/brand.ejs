@@ -2,67 +2,122 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>xx后台管理系统</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/brand.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>xx后台管理系统</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/brand.css">
 
 </head>
 
 <body>
-    <div class="container">
-        <%- include('./common/head.ejs') %>
-        <div class="ly-main">
-            <%- include('./common/menu.ejs') %>
-            <div class="body">
-                <div class="top">
-                    <button type="button" class="btn btn-warning">新增品牌</button>
-                </div>
-                <div class="bottom">
-                    <table class="table  table-bordered ">
-                        <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>品牌logo</th>
-                                <th>品牌</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><img src="/images/iphone-logo.jpg" alt=""></td>
-                                <td>苹果</td>
-                                <td>
-                                    <a href="#" class="alter">修改</a>
-                                    <a href="
-                                                        #" class="remove">删除</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td><img src="/images/huawei-logo.jpg" alt=""></td>
-                                <td>华为</td>
-                                <td>
-                                    <a href="#" class="alter">修改</a>
-                                    <a href="
-                                                        #" class="remove">删除</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <%- include('./common/nav.ejs') %>
-            </div>
+  <div class="container">
+    <%- include('./common/head.ejs') %>
+    <div class="ly-main">
+      <%- include('./common/menu.ejs') %>
+      <div class="body">
+        <div class="zhe">
         </div>
-        <%- include('./common/foot.ejs') %>
+        <div class="shade">
+          <form action="/brand/addBrand" method="POST" enctype="multipart/form-data">
+            品牌：<br><input type="text" placeholder="品牌" name="brand"><br>
+            品牌logo：<br><input type="file" name="file"><br>
+            <input type="submit" value="添加" class="append">
+          </form>
+
+        </div>
+        <div class="top">
+          <button type="button" class="btn btn-warning addBrand">新增品牌</button>
+        </div>
+        <div class="bottom">
+          <table class="table  table-bordered ">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>品牌logo</th>
+                <th>品牌</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i = 0;i< list.length;i++){ %>
+              <tr>
+                <th scope="row">
+                  <%= i+1 %>
+                </th>
+                <td><img src="/<%= list[i].fileName %>" alt=""></td>
+                <td>
+                  <%= list[i].brand %>
+                </td>
+                <td>
+                  <a href="brand/delete?id=<%= list[i]._id %>" class="remove">删除</a>
+                </td>
+              </tr>
+              <% } %>
+
+              <!-- <tr>
+                <th scope="row">2</th>
+                <td><img src="/images/huawei-logo.jpg" alt=""></td>
+                <td>华为</td>
+                <td>
+                  <a href=" #" class="remove">删除</a>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+        <nav>
+          <ul class="pagination">
+            <li>
+              <a href="/brand?page=<%= page-1<1? 1 : page-1 %>&pageSize=<%= pageSize %>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <% for(var i=0;i < totalPage; i++){ %>
+            <li class="<%= page=== (i+1) ? 'active' : '' %>">
+              <a href="/brand?page=<%= (i+1) %>&pageSize=<%= pageSize %>">
+                <%= i+1 %></a></li>
+            <% } %>
+
+            <!-- <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li> -->
+            <li>
+              <a href="/brand?page=<%= page+1>totalPage? totalPage : page+1 %>&pageSize=<%= pageSize %>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
+    <%- include('./common/foot.ejs') %>
+  </div>
 </body>
 
 </html>
 <%- include('./common/dong.ejs') %>　
+<script src="/jquery.min.js"></script>
+<script>
+  var addBrand = $(".addBrand");
+  var zhe = $(".zhe");
+  var shade = $(".shade");
+  var append = $(".append");
+  addBrand.click(function () {
+    zhe.show();
+    shade.show();
+  })
+  zhe.click(function () {
+    zhe.hide();
+    shade.hide();
+  })
+  append.click(function () {
+    zhe.hide();
+    shade.hide();
+  })
+</script>
