@@ -22,7 +22,7 @@
             <div class="body">
                 <div class="login">
                     <p class="p1"></p>
-                    <form action="/users/register" method="POST">
+                    <form action="/users/register" method="POST" class="form">
                         <div class="user">
                             <i class="glyphicon glyphicon-user"></i>
                             <input type="text" name="username" placeholder="请输入用户名" class="form-control text">
@@ -38,13 +38,13 @@
                             <span class="pnotok">请从新输入正确格式密码</span>
                         </div>
                         <div class="nickname">
-                            <input type="text" name="nickname" placeholder="请输入昵称" class="form-control">
+                            <input type="text" name="nickname" placeholder="请输入昵称" class="form-control nicheng">
                         </div>
                         <div class="phone">
-                            <input type="text" name="phone" placeholder="请输入电话号码" class="form-control">
+                            <input type="text" name="phone" placeholder="请输入电话号码" class="form-control tel">
                         </div>
                         <div class="age">
-                            <input type="text" name="age" placeholder="请输入年龄" class="form-control">
+                            <input type="text" name="age" placeholder="请输入年龄" class="form-control nianling">
                         </div>
                         <p>性别：<input type="radio" name="sex" value="男" class="sex" checked>男
                             <input type="radio" name="sex" value="女" class="sex">女
@@ -75,6 +75,11 @@
     var pyan = $(".pyan");
     var pok = $(".pok");
     var pnotok = $(".pnotok");
+
+    var nianling = $(".nianling");
+    var tel = $(".tel");
+    var nicheng = $(".nicheng");
+    var from = $(".from");
     // ================================匹配用户正则===================
     text.focus(function () {
         uyan.show();
@@ -109,6 +114,14 @@
                 pnotok.show();
                 pok.hide();
             }
+        }
+    })
+    // ======================有空不能提交==================
+    form1.submit(function () {
+        if (text.val() != "" && password.val() != "" && nianling.val() != "" && tel.val() != "" && nicheng.val() != "") {
+            return true;
+        } else {
+            return false;
         }
     })
 </script>

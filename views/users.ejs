@@ -21,7 +21,7 @@
       <%- include('./common/menu.ejs') %>
       <div class="body">
         <div class="search">
-          <form action="/users/search" method="POST">
+          <form action="/users/search" method="POST" class="form">
             <input type="text" class="form-control shouru" name="username" placeholder="Please enter content"
               aria-describedby="basic-addon2">
             <!-- <button type="submit" class="btn btn-primary">search</button> -->
@@ -106,3 +106,15 @@
 
 </html>
 <%- include('./common/dong.ejs') %>　
+<script src="/jquery.min.js"></script>
+<script>
+  var form = $(".form");
+  var shouru = $(".shouru");
+  form.submit(function () {
+    if (shouru.val() == "") {
+      return false;
+    } else {
+      return true;
+    }
+  })
+</script>

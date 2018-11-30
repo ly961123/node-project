@@ -24,13 +24,13 @@
         </div>
         <div class="shade">
 
-          <form action="/phone/addPhone" method="POST" enctype="multipart/form-data">
-            手机型号：<br><input type="text" placeholder="手机型号" name="phoneType"><br>
-            品牌：<br><input type="text" placeholder="品牌" name="brand"><br>
-            官方指导价：<br><input type="text" placeholder="官方指导价" name="price"><br>
-            二手价：<br><input type="text" name="twoPrice" placeholder="二手价"><br>
-            选择图片：<br><input type="file" name="file"><br>
-            <input type="submit" value="添加" class="append">
+          <form action="/phone/addPhone" method="POST" enctype="multipart/form-data" class="form1">
+            手机型号：<br><input type="text" placeholder="手机型号" name="phoneType" class="phoneType1"><br>
+            品牌：<br><input type="text" placeholder="品牌" name="brand" class="brand1"><br>
+            官方指导价：<br><input type="text" placeholder="官方指导价" name="price" class="price1"><br>
+            二手价：<br><input type="text" name="twoPrice" placeholder="二手价" class="twoPrice1"><br>
+            选择图片：<br><input type="file" name="file" class="file"><br>
+            <input type="submit" value="添加" class="append btn1">
           </form>
 
         </div>
@@ -38,13 +38,14 @@
 
         <div class="alterShade">
 
-          <form action="/phone/addPhone" method="POST" enctype="multipart/form-data">
+          <form action="/phone/alter" method="POST" class="form2">
             手机型号：<br><input type="text" placeholder="手机型号" name="phoneType" class="phoneType"><br>
             品牌：<br><input type="text" placeholder="品牌" name="brand" class="brand"><br>
             官方指导价：<br><input type="text" placeholder="官方指导价" name="price" class="price"><br>
             二手价：<br><input type="text" name="twoPrice" placeholder="二手价" class="twoPrice"><br>
+            <input type="text" name="id" class="phoneId">
             <!-- 选择图片：<br><input type="file" name="file"><br> -->
-            <input type="submit" value="确认修改" class="append">
+            <input type="submit" value="确认修改" class="append btn2">
           </form>
 
         </div>
@@ -152,10 +153,20 @@
   var brand = $(".brand");
   var price = $(".price");
   var twoPrice = $(".twoPrice");
+  var phoneType1 = $(".phoneType1");
+  var brand1 = $(".brand1");
+  var price1 = $(".price1");
+  var twoPrice1 = $(".twoPrice1");
+  var file = $(".file");
   var _phoneType = $("._phoneType");
   var _brand = $("._brand");
   var _price = $("._price");
   var _twoPrice = $("._twoPrice");
+  var phoneId = $(".phoneId");
+  // var btn1 = $(".btn1");
+  // var btn2 = $(".btn2");
+  var form1 = $(".form1");
+  var form2 = $(".form2");
   addPhone.click(function () {
     zhe.show();
     shade.show();
@@ -173,13 +184,30 @@
   alter.click(function () {
     zhe.show();
     alterShade.show();
-    console.log($(this).parent().parent().find("._phoneType").html().trim());
-    // phoneType.val(_phoneType.html().trim());
-    // brand.val(_brand.html().trim());
-    // price.val(_price.html().trim().substr(1).trim());
-    // // console.log(_price.html().trim().substr(1).trim());
-    // twoPrice.val(_twoPrice.html().trim().substr(1).trim());
-
+    // ============================修改=================================
+    phoneType.val($(this).parent().parent().find("._phoneType").html().trim());
+    brand.val($(this).parent().parent().find("._brand").html().trim());
+    price.val($(this).parent().parent().find("._price").html().trim().substr(1).trim());
+    twoPrice.val($(this).parent().parent().find("._twoPrice").html().trim().substr(1).trim());
+    phoneId.val($(this).parent().find(".remove").attr("href").split("=")[1])
+    // console.log(phoneType.val());
+  })
+  // ============================空不能提交====================
+  // 修改中的提交
+  form2.submit(function () {
+    if (phoneType.val() != "" && brand.val() != "" && price.val() != "" && twoPrice.val() != "") {
+      return true;
+    } else {
+      return false;
+    }
+  })
+  // 添加中的提交
+  form1.submit(function () {
+    if (phoneType1.val() != "" && brand1.val() != "" && price1.val() != "" && twoPrice1.val() != "" && file.val() != "") {
+      return true;
+    } else {
+      return false;
+    }
   })
 
 </script>

@@ -6,6 +6,7 @@ var async = require('async');
 var objectId = require('mongodb').ObjectId;
 /* GET users listing. */
 router.get('/', function (req, res, next) {
+  console.log(req.url);
   var page = parseInt(req.query.page) || 1;//页码
   var pageSize = parseInt(req.query.pageSize) || 4;//每页显示条数
   var totalSize = 0;//总条数
@@ -271,9 +272,17 @@ router.get('/delete', function (req, res) {
     client.close();
   })
 })
-//搜索操作
+//退出操作
+router.get('/quit', function (req, res) {
+  res.cookie('nickname', '');
+  res.redirect('/login');
+})
+//搜索操作？？？？？？？？？？？？？？？？？？？？？？？？？？
 router.post('/search', function (req, res) {
-  console.log(req.body);
+  var page = parseInt(req.query.page) || 1;//页码
+  var pageSize = parseInt(req.query.pageSize) || 4;//每页显示条数
+  var totalSize = 0;//总条数
+  // console.log(req.body);
   var username = req.body.username;
   var results = new RegExp(username);
   MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
@@ -285,6 +294,18 @@ router.post('/search', function (req, res) {
       })
     }
     var db = client.db('project');
+    db.collection('user').find({ username: results }).count(function (err, num) {
+      if (err) {
+        console.log('连接错误');
+        res.render('error', {
+          message: '连接错误',
+          error: err
+        })
+      }
+      else {
+        totalSize = num;
+      }
+    });
     db.collection('user').find({ username: results }).toArray(function (err, data) {
       if (err) {
         console.log('搜索失败');
@@ -294,13 +315,61 @@ router.post('/search', function (req, res) {
         })
       } else {
         console.log(data);
-        res.redirect('/users');
-        // res.render('/users', {
-        //   list: data
-        // })
+        // res.send('查找成功');
+        // res.redirect('/users');
+        var totalPage = Math.ceil(totalSize / pageSize);
+        res.render('users', {
+          list: data,
+          page: page,
+          pageSize: pageSize,
+          totalPage: totalPage
+        })
       }
-      client.close();
     })
+    // async.series([
+    //   function (cb) {
+    //     db.collection('user').find({ username: results }).count(function (err, num) {
+    //       if (err) {
+    //         // console.log(22222);
+    //         cb(err);
+    //       } else {
+    //         totalSize = num;
+    //         console.log(totalSize);
+    //         cb(null);
+    //       }
+    //     })
+    //   },
+    //   function (cb) {
+    //     db.collection('user').find({ username: results }).toArray(function (err, data) {
+    //       if (err) {
+    //         console.log(22222);
+    //         cb(err);
+    //       } else {
+    //         cb(null);
+    //       }
+    //     })
+    //   }
+    // ], function (err, result) {
+    //   if (err) {
+    //     // console.log(totalSize);
+    //     console.log('搜索失败');
+    //     res.render('error', {
+    //       message: '搜索失败',
+    //       error: err
+    //     })
+    //   } else {
+    //     console.log(result[1]);
+    //     // res.redirect('/users');
+    //     var totalPage = Math.ceil(totalSize / pageSize);
+    //     res.render('users', {
+    //       list: result[1],
+    //       page: page,
+    //       pageSize: pageSize,
+    //       totalPage: totalPage
+    //     })
+    //   }
+    // })
+    client.close();
   })
 })
 module.exports = router;

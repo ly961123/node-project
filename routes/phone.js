@@ -147,6 +147,8 @@ router.post('/addPhone', upload.single('file'), function (req, res) {
 router.get('/delete', function (req, res) {
   // console.log(req.query.id);
   id = objectId(req.query.id);
+  console.log(id);
+  console.log(typeof id)
   MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
     if (err) {
       console.log('错误');
@@ -157,6 +159,10 @@ router.get('/delete', function (req, res) {
       return;
     }
     var db = client.db('project');
+    // db.collection('phone').find({ _id: id }).count(function (err, num) {
+    //   console.log(num);
+    //   res.send('进来了');
+    // })
     db.collection('phone').deleteOne({
       _id: id
     }, function (err) {
@@ -174,4 +180,59 @@ router.get('/delete', function (req, res) {
   })
 })
 
+//修改手机
+router.post('/alter', function (req, res) {
+  // console.log(req.body);
+  var phoneType = req.body.phoneType;
+  var brand = req.body.brand;
+  var price = req.body.price;
+  var twoPrice = req.body.twoPrice;
+  var id = objectId(req.body.id);
+  MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
+    if (err) {
+      console.log('链接失败');
+      res.render('error', {
+        message: '连接失败',
+        error: err
+      })
+      return;
+    }
+    var condition = { _id: id };
+
+    var matter = {
+      $set: {
+        phoneType: phoneType,
+        brand: brand,
+        price: price,
+        twoPrice: twoPrice
+      }
+    }
+    var db = client.db('project');
+    // db.collection('phone').find({ _id: id }).count(function (err, num) {
+    //   console.log(num);
+    //   console.log(phoneType, brand, price, twoPrice)
+    //   res.send('进来了');
+    // })
+    db.collection('phone').update({ _id: id }, {
+      $set: {
+        phoneType: phoneType,
+        brand: brand,
+        price: price,
+        twoPrice: twoPrice
+      }
+    }, function (err) {
+      if (err) {
+        console.log('修改失败');
+        res.render('error', {
+          message: '修改失败',
+          error: err
+        })
+      } else {
+        // res.send('修改成功');
+        res.redirect('/phone')
+      }
+    })
+    client.close();
+  })
+})
 module.exports = router;
