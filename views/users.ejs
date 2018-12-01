@@ -24,16 +24,16 @@
           <form action="/users/search" method="POST" class="form">
             <input type="text" class="form-control shouru" name="username" placeholder="Please enter content"
               aria-describedby="basic-addon2">
-            <!-- <button type="submit" class="btn btn-primary">search</button> -->
+            <!-- <button type="submit" class="btn btn-primary dianji">search</button> -->
             <input type="submit" class="btn btn-primary dianji" value="search">
           </form>
-          <!-- <button type="button" class="btn btn-primary">search</button> -->
+          <!-- <button type="button" class="btn btn-primary dianji">search</button> -->
         </div>
         <div class="list">
           <table class="table table-condensed table-bordered table-hover">
             <thead>
               <tr>
-                <th>序号</th>
+                <th class="xuhao">序号</th>
                 <th>用户名</th>
                 <th>用户昵称</th>
                 <th>手机号码</th>
@@ -43,7 +43,7 @@
                 <th>操作</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="details">
               <% for(var i = 0; i < list.length; i++){ %>
               <tr>
                 <th scope="row">
@@ -52,7 +52,7 @@
                 <td>
                   <%= list[i].username %>
                 </td>
-                <td>
+                <td class="nickname">
                   <%= list[i].nickname %>
                 </td>
                 <td>
@@ -64,7 +64,7 @@
                 <td>
                   <%= list[i].age %>
                 </td>
-                <td>
+                <td class="isCharge">
                   <%= list[i].isCharge %>
                 </td>
                 <td>
@@ -108,8 +108,15 @@
 <%- include('./common/dong.ejs') %>　
 <script src="/jquery.min.js"></script>
 <script>
+  // window.
   var form = $(".form");
+  var xing = $(".xing");
+  var xuhao = $(".xuhao");
   var shouru = $(".shouru");
+  var details = $(".details");
+  var nickname = details.find(".nickname");
+  var isCharge = $(".isCharge");
+  var remove = details.find(".remove");
   form.submit(function () {
     if (shouru.val() == "") {
       return false;
@@ -117,4 +124,35 @@
       return true;
     }
   })
+  // ==================非管理员禁止操作==============================
+  // console.log(nickname.parent().find(".isCharge").html().trim());
+  // console.log(xing.html());
+  // console.log(details.find(".remove").eq(1).html())
+  // xuhao.html("3333");
+  // for (var i = 0; i < nickname.size(); i++) {
+  //   if (nickname.eq(i).html().trim() == xing.html()) {
+  //     var bool = (nickname.eq(i).parent().find(".isCharge").html().trim());
+  //     if (bool == "true") {
+  //       bool = true;
+  //     }
+  //     if (bool == "false") {
+  //       bool = false;
+  //     }
+  //     // console.log(typeof bool)
+  //     if (!bool) {
+  //       // console.log(1);
+  //       for (var j = 0; j < details.find(".remove").size(); j++) {
+  //         details.find(".remove").eq(j).html("");
+  //       }
+  //     }
+  //   }
+  // }
+  // if (details.find(".nickname").html().trim() == xing.html()) {
+  //   console.log(1);
+  // }
+  // console.log(details.find(".nickname"))
+  // if (!(nickname.parent().find(".isCharge").html().trim())) {
+  //   details.find(".remove").html("");
+  // }
+
 </script>

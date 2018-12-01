@@ -21,7 +21,11 @@
 }
 .body{
     .search{
+        position: relative;
         .dianji{
+            position: absolute;
+            top:0px;
+            left:190px;
             width: 100px;
             float: left;
         }

@@ -277,7 +277,7 @@ router.get('/quit', function (req, res) {
   res.cookie('nickname', '');
   res.redirect('/login');
 })
-//搜索操作？？？？？？？？？？？？？？？？？？？？？？？？？？
+//搜索操作
 router.post('/search', function (req, res) {
   var page = parseInt(req.query.page) || 1;//页码
   var pageSize = parseInt(req.query.pageSize) || 4;//每页显示条数
